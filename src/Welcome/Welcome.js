@@ -12,7 +12,7 @@ class App extends Component {
     this.signup = this.signup.bind(this);
   }
 
-  signup(res, type) { 
+  signup(res, type) {
     localStorage.setItem('randa', res.accessToken);
     const a = localStorage.getItem('randa');
     let postData;
@@ -58,11 +58,9 @@ class App extends Component {
           fields="name,email,picture"
           callback={responseFacebook}
         />
+        <Login />
+      </div>
 
-      
-  <Login />
-    </div>
-     
     );
   }
 }
