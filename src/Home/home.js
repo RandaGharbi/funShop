@@ -1,31 +1,15 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import React from 'react'
+import { Button, Header, Icon, Modal } from 'semantic-ui-react'
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      redirect: false,
-    };
-  }
-
-  // componentDidMount() {
-  //   const data = JSON.parse(sessionStorage.getItem('userData'));
-  //   console.log(data);
-  //   this.setState({ name: data.userData.name });
-  // }
-
-  render() {
-    // if (!sessionStorage.getItem('userData') || this.state.redirect) {
-    //   return (<Redirect to="/" />);
-    // }
-
-    return (
-      <div >
-        Welcome {this.state.name}
-      </div>
-    );
-  }
-}
+const Home = () => (
+  <Modal defaultOpen style={{top: '34rem',left: '35rem', position: 'relative',width: '75rem',height: '53rem'}}>
+    <Header  content='Dites-nous ce qui vous intéresse
+        Choisissez-en 5 (ou plus !) pour découvrir de nouvelles idées.' />
+    <Modal.Actions>
+      <Button color='green' inverted>
+        <Icon name='checkmark' /> Yes
+      </Button>
+    </Modal.Actions>
+  </Modal>
+)
 export default Home;
