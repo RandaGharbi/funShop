@@ -12,7 +12,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Routes name={this.state.appName} /> 
+        <Routes name={this.state.appName} />
       </div>
     );
   }
