@@ -1,68 +1,40 @@
-import React, { Component } from 'react';
-import FacebookLogin from 'react-facebook-login';
-import { Redirect } from 'react-router-dom';
-import PostData from '../services/PostData';
-import Login from '../GoogleLogin/Login';
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      redirectToReferrer: false,
-    };
-    this.signup = this.signup.bind(this);
-  }
+import React from 'react'
+import { Card, Icon, Image, Input, Button } from 'semantic-ui-react'
+import HelloCard from '../Card/HelloCard';
+import FormRegister from '../Register/RegisterForm';
+import { Link } from 'react-router-dom';
+const Welcome = () => (
+  <Card 
+    style = {{position:'relative', left: '45rem', top: '19rem', width: '31rem', height: '32rem'}}
+  >
+  <Card.Content header='About Amy' />
+  <Input 
+      icon='user' 
+      iconPosition='left' 
+      placeholder='Login' 
+      style = {{position:'relative', bottom:'7rem'}} 
+  />
+  <Input  
+      type='password' 
+      iconPosition='left' 
+      placeholder='Password' 
+      style = {{position:'relative', bottom:'5rem'}}
+  />
+  <div>
+    <Button 
+     style={{position: 'relative', left: '2rem', bottom: '3rem'}}>
+      SignIn
+    </Button>
+  </div>
+  <HelloCard />
+  <Card.Content extra>
+    <Link 
+    to="/FormRegister"
+      style={{position: 'relative', left: '23rem'}}>
+      SignUp
+    </Link>
+  </Card.Content>
+</Card>
+)
 
-  signup(res, type) {
-    localStorage.setItem('randa', res.accessToken);
-    const a = localStorage.getItem('randa');
-    let postData;
-    if (type === 'facebook') {
-      postData = {
-        name: res.name,
-        provider: type,
-        email: res.email,
-        provider_id: res.id,
-        token: res.accessToken,
-        provider_pic: res.provider_pic,
-      };
-
-      this.setState({ token: localStorage.getItem('randa') });
-      this.setState({ redirectToReferrer: true });
-    }
-
-
-    PostData('signup', postData).then((result) => {
-      const responseJson = result;
-      localStorage.setItem('randa', result.token);
-      const auth = localStorage.getItem('randa');
-      if (responseJson.userData) {
-        localStorage.setItem('userData', JSON.stringify(responseJson));
-        this.setState({ redirectToReferrer: true });
-      }
-    });
-  }
-
-  render() {
-    if (this.state.redirectToReferrer) {
-      return (<Redirect to="/home" />);
-    }
-
-    const responseFacebook = (response) => {
-      this.signup(response, 'facebook');
-    };
-    return (
-      <div className="App">
-        <FacebookLogin
-          appId="253063712096969"
-          autoLoad
-          fields="name,email,picture"
-          callback={responseFacebook}
-        />
-        <Login />
-      </div>
-
-    );
-  }
-}
-
-export default App;
+export default Welcome;
