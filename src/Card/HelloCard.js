@@ -44,7 +44,7 @@ class HelloCard extends Component {
 
   render() {
     if (this.state.redirectToReferrer) {
-      return (<Redirect to="/home" />);
+      return (<Redirect to="/Categories" />);
     }
 
     const responseFacebook = (response) => {
